@@ -1,8 +1,9 @@
 This library works by injecting a new module in the Web3.py instance, which allows
-submitting "bundles" of transactions directly to miners. This is done by also creating
-a middleware which captures calls to `eth_sendBundle` and `eth_callBundle`, and sends
-them to an RPC endpoint which you have specified, which corresponds to `mev-geth`. 
-To apply correct headers we use OpenmevProvider which injects the correct header on post 
+submitting "private transactions" or "bundles" of transactions directly to miners. 
+This is done by also creating a middleware which captures calls to 
+`eth_sendRawTransaction` / `eth_sendPrivateTransaction` and `eth_sendBundle`, 
+sending them to OpenMev RPC endpoint, which corresponds to `mev-geth`. 
+To apply correct headers we use OpenmevProvider which injects the correct header on post.
 
 ## Example
 
@@ -25,6 +26,11 @@ Avaliable methods:
 - `w3.openmev.sendPrivateTransaction` Look in `examples/private_swap.py` for usage examples
 
 # Development and testing
+
+Generate new eth wallet
+```
+python3 generate_private_key.py
+```
 
 Export private key and rpc url as env vars
 ```
